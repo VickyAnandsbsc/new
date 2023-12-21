@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Details</title>
+    <style>
+        body {
+            background-image: url('/static/irix.jpg');
+            background-size: cover;
+        }
+        #container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="/static/Logo.png" alt="Logo" style="width: 100%; max-width: 200px; margin-bottom: 20px;">
+        <h2>Patient Details</h2>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+        <form action="/submit" method="post" id="patientForm">
+            <label for="name">Patient Name:</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="age" required><br>
+
+            <label for="sex">Sex:</label>
+            <select id="sex" name="sex" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select><br>
+
+            <label for="contact">Contact No:</label>
+            <input type="tel" id="contact" name="contact" pattern="[0-9]{10}" required><br>
+
+            <label for="R_Power">R Power:</label>
+            <input type="number" step="0.01" id="R_Power" name="R_Power" required><br>
+
+            <label for="L_Power">L Power:</label>
+            <input type="number" step="0.01" id="L_Power" name="L_Power" required><br>
+
+            <label for="Near_Add">Near Add:</label>
+            <input type="number" step="0.01" id="Near_Add" name="Near_Add" required><br>
+
+            <label for="Lens_Type">Lens Type:</label>
+            <input type="text" id="Lens_Type" name="Lens_Type" required><br>
+
+            <label for="problem">Problem:</label>
+            <input type="text" id="problem" name="problem" required><br>
+
+            <label for="amount">Amount:</label>
+            <input type="text" id="amount" name="amount" required><br>
+
+            <label for="advance">Advance:</label>
+            <input type="text" id="advance" name="advance" required><br>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <script>
+            // Function to update the field by adding numbers
+            function updateField(fieldName) {
+                var value = parseInt(document.getElementById(fieldName).value) || 0;
+                document.getElementById(fieldName).value = value;
+            }
+
+            // Event listeners to trigger the function on input
+            document.getElementById('amount').addEventListener('input', function() {
+                updateField('amount');
+            });
+
+            document.getElementById('advance').addEventListener('input', function() {
+                updateField('advance');
+            });
+        </script>
+    </div>
+</body>
+</html>
